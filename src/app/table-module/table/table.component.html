@@ -1,0 +1,122 @@
+<div>
+  <a class="btn btn-primary mb-3" (click)="return()">
+    <i class="fa fa-arrow-left"></i> Return
+  </a>
+</div>
+<div class="sliding-section">
+  <div class="head-title">
+    <h2 i18n="@@account-list.title">Account List</h2>
+  </div>
+  <app-account-list
+    id="accountList"
+    [listAccount]="pageObject.pageData.listAccount"
+    [(caro)]="caro"
+    [(event)]="sliderEvent"
+    (onSlideTrigger)="onSlide(sliderEvent, caro)"
+  >
+  </app-account-list>
+</div>
+
+<br />
+
+<div class="table-section">
+  <div class="head-title">
+    <h2 i18n="@@table.title">Table</h2>
+  </div>
+  <div class="table-outer">
+    <div class="page-nav ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+      <div class="filter-table-section">
+        <div class="filter-section">
+          <form action="#" name="research-form">
+            <app-search-field
+              id="searchField"
+              [(listToBeFiltred)]="pageObject.pageData.tableList"
+              [listToBeFiltredInitial]="pageObject.pageData.tableListInitiale"
+              [listOfFilterColumn]="pageObject.pageConstant.listOfFilterColumn"
+              [(searchValue)]="searchValue"
+            >
+            </app-search-field>
+            <app-export-file
+              id="exportFile"
+              [listToBeExported]="pageObject.pageData.tableList"
+              [listOfExportedColumn]="
+                pageObject.pageConstant.listOfExportedColumn
+              "
+              [fileHead]="pageObject.pageConstant.fileHeader"
+              [fileName]="pageObject.pageConstant.fileName"
+            >
+            </app-export-file>
+          </form>
+        </div>
+        <div class="table-result-section">
+          <table id="table" class="tableOutput">
+            <thead class="table-head">
+              <tr>
+                <th scope="col" class="width-twenty">
+                  <app-statut-header
+                    id="statutHeader"
+                    [(listToBeFiltred)]="pageObject.pageData.tableList"
+                    [listToBeFiltredInitial]="
+                      pageObject.pageData.tableListInitiale
+                    "
+                    [statusList]="pageObject.pageConstant.statusList"
+                    [statusLabel]="pageObject.pageConstant.statusLabel"
+                    [filterColumn]="pageObject.pageConstant.statusFilterColumn"
+                  >
+                  </app-statut-header>
+                </th>
+                <th scope="col" class="width-twenty">
+                  <app-sortable-header
+                    id="dateHeader"
+                    [(listToBeSorted)]="pageObject.pageData.tableList"
+                    [columnName]="pageObject.pageConstant.firstHeaderColumn"
+                    [headerTitle]="pageObject.pageConstant.firstHeaderTitle"
+                  >
+                  </app-sortable-header>
+                </th>
+                <th scope="col" class="width-twenty">
+                  <app-sortable-header
+                    id="amountHeader"
+                    [(listToBeSorted)]="pageObject.pageData.tableList"
+                    [columnName]="pageObject.pageConstant.secondHeaderColumn"
+                    [headerTitle]="pageObject.pageConstant.secondHeaderTitle"
+                  >
+                  </app-sortable-header>
+                </th>
+                <th scope="col" class="width-fourthy">
+                  <app-sortable-header
+                    id="labelHeader"
+                    [(listToBeSorted)]="pageObject.pageData.tableList"
+                    [columnName]="pageObject.pageConstant.thirdHeaderColumn"
+                    [headerTitle]="pageObject.pageConstant.thirdHeaderTitle"
+                  >
+                  </app-sortable-header>
+                </th>
+              </tr>
+            </thead>
+            <tr
+              *ngFor="
+                let row of pageObject.pageData.tableList
+                  | slice: (page - 1) * pageSize:page * pageSize
+              "
+            >
+              <td>{{ row?.statusLabel }}</td>
+              <td>
+                {{ row?.date | date: pageObject.pageConstant.dateFormat }}
+              </td>
+              <td [amountType]="row?.amount">
+                {{ row?.amount | amountFormatter }}
+              </td>
+              <td>{{ row?.label }}</td>
+            </tr>
+          </table>
+          <app-paginator
+            [tableList]="pageObject.pageData.tableList"
+            [(page)]="page"
+            [(pageSize)]="pageSize"
+          ></app-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

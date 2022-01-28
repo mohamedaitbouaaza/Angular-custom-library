@@ -1,0 +1,46 @@
+<div class="breaking-sider">
+  <div class="info-slider">
+    <ngb-carousel
+      #caro
+      class="stylecaroussel reset-btn"
+      contenteditable="false"
+      (slide)="onSlide($event, caro)"
+      interval="false"
+    >
+      <ng-template
+        *ngFor="let slide of listAccount; let i = index"
+        ngbSlide
+        [id]="'slideId_' + i"
+      >
+        <div class="info-slider-wrap">
+          <div class="info-slider-inner">
+            <div class="info-box">
+              <h4>
+                {{ slide.codeOffreLabel }}
+              </h4>
+
+              <div class="account-number pointer">
+                {{ slide?.accountNumber }}
+              </div>
+            </div>
+
+            <div class="info-box align-right">
+              <div class="status">
+                <a> {{ slide?.legalSituationLabel }}</a>
+              </div>
+              <div [amountType]="stringToNumber(slide?.balance)" class="amount">
+                {{ stringToNumber(slide?.balance) | amountFormatter }}
+                {{ slide?.currency }}
+              </div>
+              <div class="available-balance">
+                <span i18n="@@account.solde">Available Balance:</span>
+                {{ stringToNumber(slide?.availablBalance) | amountFormatter }}
+                {{ slide?.currency }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>

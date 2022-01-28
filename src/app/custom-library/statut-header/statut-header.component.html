@@ -1,0 +1,28 @@
+<div
+  class="dropdown"
+  data-control="checkbox-dropdown"
+  (click)="handleStatusVisibility()"
+>
+  <label class="dropdown-label">{{ statusLabel }}</label>
+
+  <div class="dropdown-list dropdown-list-height">
+    <div class="dropdown-list-inner">
+      <label
+        class="dropdown-option"
+        *ngFor="let option of statusList"
+        [class.hidden]="!option.visibility"
+      >
+        <input
+          type="checkbox"
+          class="appearance-checkbox"
+          [id]="option.id"
+          name="dropdown-group"
+          [value]="option.value"
+          (change)="statutChange($event)"
+          [checked]="option.checked"
+        />
+        <span> {{ option.name }} </span>
+      </label>
+    </div>
+  </div>
+</div>

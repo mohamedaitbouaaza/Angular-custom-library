@@ -1,0 +1,9 @@
+<button
+  type="button"
+  name="sortable-column"
+  class="js-sorting-button"
+  (click)="sortColumnHeader()"
+>
+  <div>{{ headerTitle }}</div>
+  <span [ngClass]="sortArrowFlag ? 'js-arrow js-arrow-up' : 'js-arrow js-arrow-down'"></span>
+</button>

@@ -1,0 +1,28 @@
+<div class="downloader-btn text-align-right">
+  <button
+    type="button"
+    name="Export-EXCEL"
+    class="green-bg margin-six"
+    id="exportExcelBtn"
+    *ngIf="downloadExcelVisibility"
+    (click)="getExcelFile()"
+  >
+    <img src="../../../../../assets/images/arrow-down.svg" alt="" /><span
+      i18n="@@global.export.excel"
+      >EXCEL export</span
+    >
+  </button>
+  <button
+    type="button"
+    name="Download-PDF"
+    class="dark-bg"
+    id="exportPdfBtn"
+    *ngIf="downloadPdfVisibility"
+    (click)="getPdfFile()"
+  >
+    <img src="../../../../../assets/images/arrow-down.svg" alt="" /><span
+      i18n="@@global.export.pdf"
+      >Download PDF</span
+    >
+  </button>
+</div>

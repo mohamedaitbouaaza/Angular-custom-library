@@ -1,0 +1,9 @@
+{
+  "locale": "ar",
+  "translations": {
+    "account.solde": "الرصيد المتوفر:",
+    "global.export.excel": "تصدير EXCEL",
+    "global.export.pdf": "تحميل PDF",
+    "global.rechercher": "بحث"
+  }
+}

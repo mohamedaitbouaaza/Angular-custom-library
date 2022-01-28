@@ -1,0 +1,31 @@
+<div *ngIf="tableList?.length !== 0" class="d-flex justify-content-center">
+  <ngb-pagination
+    id="table-paginate"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [maxSize]="maxSize"
+    [ellipses]="true"
+    [boundaryLinks]="true"
+    [collectionSize]="tableList?.length"
+    (pageChange)="toogleEvent()"
+  >
+    <ng-template ngbPaginationFirst><<</ng-template>
+    <ng-template ngbPaginationLast>>></ng-template>
+    <ng-template ngbPaginationPrevious><</ng-template>
+    <ng-template ngbPaginationNext>></ng-template>
+    <ng-template ngbPaginationEllipsis>...</ng-template>
+    <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+  </ngb-pagination>
+  <select
+    id="items"
+    class="inputfield filterfield pointer dropdown-paginator"
+    name="items"
+    (click)="setPaginatorSize()"
+    (change)="setItemsPerPage(pageSize)"
+    [(ngModel)]="pageSize"
+  >
+    <option value="{{ number }}" *ngFor="let number of paginatorList">
+      {{ number }}
+    </option>
+  </select>
+</div>

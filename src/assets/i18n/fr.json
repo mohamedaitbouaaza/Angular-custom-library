@@ -1,0 +1,9 @@
+{
+  "locale": "fr",
+  "translations": {
+    "account.solde": "Solde Disponible :",
+    "global.export.excel": "Export EXCEL",
+    "global.export.pdf": "Télécharger PDF",
+    "global.rechercher": "Recherche"
+  }
+}

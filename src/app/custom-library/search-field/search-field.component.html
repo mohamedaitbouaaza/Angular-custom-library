@@ -1,0 +1,12 @@
+<div class="research-field">
+  <input
+    id="inputSearch"
+    type="text"
+    name="research"
+    class="inputfield"
+    placeholder="Research"
+    i18n-placeholder="Research"
+    (input)="onSearch($event?.target?.value)"
+    [(ngModel)]="searchValue"
+  />
+</div>
